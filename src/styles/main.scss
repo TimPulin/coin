@@ -1,0 +1,14 @@
+// @import "~bootstrap/scss/bootstrap";
+@import './normalize.css';
+// @import './helpers/_normalize.scss';
+@import './helpers/_fonts.scss';
+@import './utils/_mixins.scss';
+@import './utils/_vars.scss';
+@import './utils/_grid.scss';
+@import './utils/common.scss';
+@import './components/_buttons.scss';
+@import './components/_navigation.scss';
+@import './components/_form.scss';
+@import './components/_card.scss';
+@import './sections/_header.scss';
+@import './sections/_main.scss';

@@ -1,0 +1,9 @@
+.main {
+    max-height: 100vh;
+    background-color: $color-white;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,89 @@
+// 100	Thin (Hairline)
+// 200	Extra Light (Ultra Light)
+// 300	Light
+// 400	Normal (Regular)
+// 500	Medium
+// 600	Semi Bold (Demi Bold)
+// 700	Bold
+// 800	Extra Bold (Ultra Bold)
+// 900	Black (Heavy)
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto-Medium'),
+    url(/src/assets/fonts/Roboto-Medium.woff2) format(woff2),
+    url(/src/assets/fonts/Roboto-Medium.woff) format(woff);
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: local('Ubuntu-Regular'),
+    url(/src/assets/fonts/Ubuntu-Regular.woff2) format(woff2),
+    url(/src/assets/fonts/Ubuntu-Regular.woff) format(woff);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: local('Ubuntu-Medium'),
+    url(/src/assets/fonts/Ubuntu-Medium.woff2) format(woff2),
+    url(/src/assets/fonts/Ubuntu-Medium.woff) format(woff);
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: local('WorkSans-Light'),
+    url(/src/assets/fonts/WorkSans-Light.woff2) format(woff2),
+    url(/src/assets/fonts/WorkSans-Light.woff) format(woff);
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: local('WorkSans-Regular'),
+    url(/src/assets/fonts/WorkSans-Regular.woff2) format(woff2),
+    url(/src/assets/fonts/WorkSans-Regular.woff) format(woff);
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: local('WorkSans-Medium'),
+    url(/src/assets/fonts/WorkSans-Medium.woff2) format(woff2),
+    url(/src/assets/fonts/WorkSans-Medium.woff) format(woff);
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: local('WorkSans-SemiBold'),
+    url(/src/assets/fonts/WorkSans-SemiBold.woff2) format(woff2),
+    url(/src/assets/fonts/WorkSans-SemiBold.woff) format(woff);
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  src: local('WorkSans-Bold'),
+    url(/src/assets/fonts/WorkSans-Bold.woff2) format(woff2),
+    url(/src/assets/fonts/WorkSans-Bold.woff) format(woff);
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

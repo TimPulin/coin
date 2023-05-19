@@ -1,0 +1,128 @@
+.navigation {
+  width: 100%;
+
+  &__btn-close {
+    display: none;
+  }
+
+  &__panel {
+    // width: 100%;
+  }
+
+  &__list {
+    @include list-reset;
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 25px;
+  }
+
+  &__link {
+    @include link-reset;
+
+    // padding: 0 8px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    outline: none;
+
+
+    &:focus-visible {
+      // background-color: $color-pink_violet;
+      // color: $color-primary_shade;
+    }
+
+    &:hover {
+      color: $color-primary;
+      background-color: inherit;
+    }
+
+    &:active {
+      // color: $color-primary_shade;
+      background-color: inherit;
+    }
+  }
+
+  &__title {
+    @include title-reset;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 992px) {
+
+
+  .header {
+    overflow: visible;
+
+
+    &__nav--open-list {
+      opacity: 1;
+    }
+
+    .navigation__panel {
+      transition-duration: 0.5s;
+      transition-timing-function: ease-in-out;
+      transition-property: opacity;
+
+      display: none;
+      position: absolute;
+      top: 0px;
+      left: 0;
+      align-items: flex-start;
+      padding: 14px 21px 36px;
+      // background-color: $color-grey_light;
+      opacity: 0;
+
+      .navigation__list {
+        position: relative;
+
+        transition-duration: 0.5s;
+        transition-timing-function: ease-in-out;
+        transition-property: transform;
+        transform: translateX(-100%);
+
+        flex-direction: column;
+        row-gap: 30px;
+        margin-bottom: auto;
+
+      }
+
+      .navigation__list--open {
+        transform: translateX(0);
+      }
+
+      .navigation__btn-close {
+        display: inline-block;
+        margin-bottom: 16px;
+        align-self: flex-start;
+
+        .icon-wrap__icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+    }
+
+    .navigation__panel--open {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 100vh;
+      width: 100%;
+      z-index: 30;
+    }
+
+    .navigation__panel--non-opacity {
+      opacity: 1;
+    }
+  }
+
+  /* header */
+}
+
+/* 768*/

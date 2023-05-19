@@ -1,0 +1,43 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 135px);
+}
+
+.form {
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 85px 50px 115px;
+    border-radius: 50px;
+    background-color: $color-grey_7;
+  }
+
+  .page-title {
+    margin-bottom: 35px;
+  }
+
+  &__label {
+    position: relative;
+  }
+
+  &__label:not(:last-child) {
+    margin-bottom: 25px;
+  }
+
+  &__label:last-child {
+    margin-bottom: 30px;
+  }
+
+  &__label-text {
+    position: absolute;
+    bottom: 50%;
+    right: calc(100% + 18px);
+    transform: translateY(50%);
+  }
+
+  .button {
+    align-self: start;
+  }
+}

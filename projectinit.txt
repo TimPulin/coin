@@ -1,0 +1,20 @@
+﻿#!/bin/bash
+
+npm init;
+npm i -D gulp gulp-cli gulp-concat gulp-if gulp-htmlmin gulp-autoprefixer gulp-clean-css;
+npm i -D del@6.1.1 gulp-sass sass gulp-sourcemaps;
+npm i -D browser-sync gulp-svg-sprite gulp-image;
+npm i -D gulp-uglify-es gulp-notify gulp-babel @babel/core @babel/preset-env babel-loader;
+
+
+
+
+
+
+
+
+
+
+
+
+
