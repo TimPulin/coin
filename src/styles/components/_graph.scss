@@ -1,0 +1,100 @@
+.graph {
+  &__body {
+    display: flex;
+    column-gap: 24px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 28px;
+    padding: 0 35px;
+    border: 1px solid $color-black;
+  }
+
+  &__item {
+    position: relative;
+    width: 50px;
+    height: 163px;
+  }
+
+  &__item-color {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+  }
+
+  &__item-color--1 {
+    background-color: $color-primary;
+  }
+
+  &__item-name {
+    position: absolute;
+    top: calc(100% + 7px);
+    font-family: 'WorkSans';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+  }
+
+
+  &__limit-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    font-family: 'WorkSans';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+  }
+
+  &__limit::after {
+    content: ' \20BD';
+  }
+
+  &__item:nth-child(1) .graph__item-color--1 {
+    height: 100%;
+  }
+
+  &__item:nth-child(2) .graph__item-color--1 {
+    height: 50%;
+  }
+
+  &__item:nth-child(3) .graph__item-color--1 {
+    height: 25%;
+  }
+
+  &__item:nth-child(4) .graph__item-color--1 {
+    height: 21%;
+  }
+
+  &__item:nth-child(5) .graph__item-color--1 {
+    height: 90%;
+  }
+
+  &__item:nth-child(6) .graph__item-color--1 {
+    height: 40%;
+  }
+
+  &__item:nth-child(6) .graph__item-color--2 {
+    height: 13%;
+  }
+
+}
+
+.graph--ratio {
+  .graph__item-color--1 {
+    background-color: $color-success;
+  }
+
+  .graph__item-color--2 {
+    background-color: $color-secondary_4;
+  }
+
+  .graph__item-color--smaler {
+    z-index: 10;
+  }
+}

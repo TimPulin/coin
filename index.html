@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COIN</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./styles/styles.min.css">
+</head>
+
+<body>
+  <div class="container-app">
+    <header class="header">
+      <div class="container">
+        <div class="header__wrap">
+          <div class="logo">
+            <img src="/src/assets/images/logo.png" alt="" class="logo__img">
+          </div>
+          <nav class="header__nav navigation">
+            <div class="navigation__panel">
+              <button class="navigation__btn-close button-reset" aria-label="закрыть навигацию">
+                <span class="btn-close__line"></span>
+                <span class="btn-close__line"></span>
+              </button>
+              <ul class="navigation__list">
+                <li class="navigation__item">
+                  <a href="#" class="navigation__link button button--secondary">
+                    Банкоматы
+                  </a>
+                </li>
+                <li class="navigation__item">
+                  <a href="#" class="navigation__link button button--secondary">
+                    Счета
+                  </a>
+                </li>
+                <li class="navigation__item">
+                  <a href="#" class="navigation__link button button--secondary">
+                    Валюта
+                  </a>
+                </li>
+                <li class="navigation__item">
+                  <a href="#" class="navigation__link button button--secondary">
+                    Выйти
+                  </a>
+                </li>
+              </ul> <!-- nav__items -->
+            </div> <!-- nav__panel -->
+          </nav>
+        </div> <!-- header__wrap -->
+
+
+      </div> <!-- container -->
+    </header>
+
+    <main class="main">
+      <div class="container">
+        <div class="main__top">
+          <h1 class="page-title">Валютный обмен</h1>
+        </div>
+
+        <div class="main__base main__base--split">
+          <div class="main__side">
+            <div class="card">
+              <div class="card__body">
+                <div class="card__title">
+                  Ваши валюты
+                </div>
+                <ul class="card__list">
+                  <li class="relationship">
+                    <div class="relationship__wrap-title">
+                      <span class="relationship__title">
+                        ETH
+                      </span>
+                    </div>
+                    <span class="relationship__value">
+                      6.3123545131
+                    </span>
+                  </li>
+                  <li class="relationship">
+                    <div class="relationship__wrap-title">
+                      <span class="relationship__title">
+                        ETH
+                      </span>
+                    </div>
+                    <span class="relationship__value">
+                      6.3123545131
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div> <!-- card -->
+
+            <div class="card">
+              <div class="card__body">
+                <div class="card__title">
+                  Обмен валюты
+                </div>
+              </div>
+            </div> <!-- card -->
+          </div> <!-- main__left -->
+
+          <div class="main__side">
+            <div class="card card--shade">
+              <div class="card__body">
+                <div class="card__title">
+                  Изменение курсов в реальном времени
+                </div>
+                <ul class="card__list list">
+                  <li class="flex">
+                    <div class="relationship">
+                      <div class="relationship__wrap-title">
+                        <span class="relationship__title">
+                          BTC/ETH
+                        </span>
+                      </div>
+                      <span class="relationship__value">
+                        6.3123545131
+                      </span>
+                    </div> <!-- relationship -->
+                    <span class="bg-arrow bg-arrow--green"></span>
+                  </li>
+                  <li class="flex">
+                    <div class="relationship">
+                      <div class="relationship__wrap-title">
+                        <span class="relationship__title">
+                          BTC/ETH
+                        </span>
+                      </div>
+                      <span class="relationship__value">
+                        6.3123545131
+                      </span>
+                    </div> <!-- relationship -->
+                    <span class="bg-arrow bg-arrow--red"></span>
+                  </li>
+                </ul>
+              </div>
+            </div> <!-- card -->
+          </div> <!-- main__right -->
+        </div> <!-- main__base -->
+      </div> <!-- container -->
+    </main>
+  </div>
+
+
+</body>
+
+</html>

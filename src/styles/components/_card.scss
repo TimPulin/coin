@@ -1,0 +1,91 @@
+.card {
+  padding: 25px 50px 50px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include title-reset;
+    margin-bottom: 25px;
+    font-family: 'WorkSans';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+  }
+
+  &__acc-action {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__acc-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  &__acc-number {
+    margin-bottom: 9px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: $color-secondary_1;
+  }
+
+  &__acc-amount {
+    font-family: 'Ubuntu';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: $color-secondary_1;
+  }
+
+  &__acc-action-title {
+    font-family: 'WorkSans';
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.02em;
+    color: $color-black;
+  }
+
+  &__acc-action-date {
+    font-family: 'Work Sans';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.02em;
+    color: $color-black;
+  }
+
+  &__list {
+    @include list-reset;
+  }
+}
+
+.card--account {
+  width: 30%;
+  padding: 22px;
+  border-radius: 9px;
+}
+
+.card--table {
+  width: 100%;
+  background-color: $color-grey_7;
+}
+
+.card--shade {
+  background-color: $color-grey_8;
+}
+
+.card-empty {
+  width: 30%;
+  height: 0;
+}

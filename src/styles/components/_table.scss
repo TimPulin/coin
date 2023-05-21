@@ -1,0 +1,73 @@
+.table {
+  display: table;
+  border-spacing: 0;
+  font-family: 'Ubuntu';
+  line-height: 24px;
+  letter-spacing: -0.01em;
+
+  .thead {
+    display: table-header-group;
+    background-color: $color-primary;
+  }
+
+  .tbody {
+    display: table-row-group;
+  }
+
+  .tr {
+    display: table-row;
+  }
+
+  .th,
+  .td {
+    display: table-cell;
+    padding: 20px;
+    white-space: nowrap;
+  }
+
+  .th {
+    font-weight: 500;
+    font-size: 20px;
+    color: $color-white;
+  }
+
+  .th:first-child {
+    padding-left: 50px;
+    border-radius: 15px 0 0 15px;
+  }
+
+  .th:last-child {
+    width: 99%;
+    border-radius: 0 15px 15px 0;
+  }
+
+
+  .td {
+    font-weight: 400;
+    font-size: 16px;
+
+    &__amount::after {
+      content: ' \20BD';
+    }
+
+    &__amount--positive {
+      color: $color-success;
+    }
+
+    &__amount--positive::before {
+      content: '\002B\ ';
+    }
+
+    &__amount--negative {
+      color: $color-secondary_4;
+    }
+
+    &__amount--negative::before {
+      content: '\002D\ ';
+    }
+  }
+
+  .td:first-child {
+    padding-left: 50px;
+  }
+}

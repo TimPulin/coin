@@ -1,0 +1,93 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.form {
+  .page-title {
+    margin-bottom: 35px;
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 85px 50px 115px;
+    border-radius: 50px;
+    background-color: $color-grey_7;
+  }
+
+  &__title {
+    @include reset;
+
+    font-family: 'WorkSans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+  }
+
+
+  &__label {
+    position: relative;
+  }
+
+  &__label:not(:last-child) {
+    margin-bottom: 25px;
+  }
+
+  &__label:last-child {
+    margin-bottom: 30px;
+  }
+
+  &__label-text {
+    position: absolute;
+    bottom: 50%;
+    right: calc(100% + 18px);
+    transform: translateY(50%);
+    white-space: nowrap;
+    font-family: 'Ubuntu';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  &-control {
+    width: 300px;
+  }
+
+  .button {
+    align-self: start;
+  }
+}
+
+.form--transfer {
+  .form__wrap {
+    padding: 25px 50px;
+    align-items: flex-end;
+    row-gap: 25px;
+  }
+
+  .form__title {
+    align-self: flex-start;
+  }
+
+  .form__label {
+    display: flex;
+    align-items: center;
+    column-gap: 18px;
+    margin-bottom: 0;
+  }
+
+  .form__label-text {
+    position: static;
+    transform: none;
+  }
+
+  .button {
+    margin-left: 206px;
+  }
+}

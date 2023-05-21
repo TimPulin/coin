@@ -1,0 +1,42 @@
+.relationship {
+  flex-grow: 2;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+
+  font-family: 'WorkSans';
+  font-size: 20px;
+  line-height: 23px;
+
+  &__wrap-title {
+    flex-grow: 2;
+    overflow: hidden;
+  }
+
+  &__title {
+    position: relative;
+    font-weight: 600;
+  }
+
+  &__title::after {
+    content: '......................................................................................................';
+    position: absolute;
+    padding-left: 5px;
+    font-weight: 400;
+  }
+
+  &__value {
+    position: relative;
+    padding-left: 5px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+  }
+}
+
+// <relationship>
+//   <realtionship__wrap-title>
+//     <relationship__title>
+//   </realtionship__wrap-title>
+//   <relationship__value>
+// </relationship>

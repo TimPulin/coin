@@ -1,0 +1,137 @@
+<div class="main__top">
+  <div class="main__title-block">
+    <div class="title-wrapper">
+      <h1 class="page-title">Просмотр Счета</h1>
+    </div>
+
+    <button class="btn button button--primary">
+      <span class="button__icon">
+        <svg class="button__svg--fill" width="16" height="12" viewBox="0 0 16 12" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.83 5L7.41 1.41L6 0L0 6L6 12L7.41 10.59L3.83 7L16 7V5L3.83 5Z" />
+        </svg>
+      </span>
+      Вернуться назад
+    </button>
+  </div> <!-- main__top -->
+  <div class="main__account-info">
+    <span class="main__account-number">
+      &#x2116; 12455242373623463
+    </span>
+    <div class="main__balance">
+      <span class="main__balance-title">Баланс</span>
+      <span class="main__balance-amount">31 235</span>
+    </div>
+  </div><!-- main__balance -->
+</div> <!-- main__top -->
+
+
+
+<div class="main__base">
+
+  <form action="POST" class="form form--transfer">
+    <div class="form__wrap">
+      <h2 class="form__title">Новый перевод</h2>
+
+      <label class="form-label form__label">
+        <span class="form__label-text">Номер счёта получателя</span>
+        <!-- <select class="select">
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+          </select> -->
+        <input type="text" class="form-control">
+      </label>
+
+      <label class="form-label form__label">
+        <span class="form__label-text">Сумма перевода</span>
+        <input type="text" class="form-control" required>
+      </label>
+
+      <button class="btn button button--primary">
+        <span class="button__icon">
+          <svg class="button__svg--fill" width="20" height="16" viewBox="0 0 20 16" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 16H2C0.89543 16 0 15.1046 0 14V1.913C0.0466084 0.842548 0.928533 -0.00101238 2 9.11911e-07H18C19.1046 9.11911e-07 20 0.895432 20 2V14C20 15.1046 19.1046 16 18 16ZM2 3.868V14H18V3.868L10 9.2L2 3.868ZM2.8 2L10 6.8L17.2 2H2.8Z" />
+          </svg>
+        </span>
+        Отправить
+      </button>
+    </div>
+  </form>
+
+  <div class="card card--graph">
+    <div class="card__body">
+      <h2 class="card__title">Динамика баланса</h2>
+      <div class="graph">
+        <div class="graph__body">
+          <div class="graph__list">
+            <div class="graph__item">
+              <div class="graph__item-color graph__item-color--1"></div>
+              <div class="graph__item-name">янв</div>
+            </div>
+            <div class="graph__item">
+              <div class="graph__item-color graph__item-color--1"></div>
+              <div class="graph__item-name">янв</div>
+            </div>
+            <div class="graph__item">
+              <div class="graph__item-color graph__item-color--1"></div>
+              <div class="graph__item-name">янв</div>
+            </div>
+            <div class="graph__item">
+              <div class="graph__item-color graph__item-color--1"></div>
+              <div class="graph__item-name">янв</div>
+            </div>
+            <div class="graph__item">
+              <div class="graph__item-color graph__item-color--1"></div>
+              <div class="graph__item-name">янв</div>
+            </div>
+            <div class="graph__item">
+              <div class="graph__item-color graph__item-color--1"></div>
+              <div class="graph__item-name">янв</div>
+            </div>
+          </div> <!-- graph__list -->
+          <div class="graph__limit-box">
+            <span class="graph__limit-max--1">300</span>
+            <span class="graph__limit-min">0</span>
+          </div>
+        </div> <!-- graph__body -->
+      </div> <!-- graph -->
+    </div> <!-- card__body -->
+  </div> <!-- card -->
+
+  <div class="card card--table">
+    <div class="card__body">
+      <h2 class="card__title">История переводов</h2>
+      <table class="table-custom table">
+        <thead class="thead">
+          <tr class="tr">
+            <th class="th">Счёт отправителя</th>
+            <th class="th">Счёт получателя</th>
+            <th class="th">Сумма</th>
+            <th class="th">Дата</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr">
+            <td class="td">123545123541</td>
+            <td class="td">123545123541</td>
+            <td class="td">
+              <span class="td__amount td__amount--negative">1 234</span>
+            </td>
+            <td class="td">31.12.2021</td>
+          </tr>
+          <tr class="tr">
+            <td class="td">123545123541</td>
+            <td class="td">123545123541</td>
+            <td class="td">
+              <span class="td__amount td__amount--positive">1 234</span>
+            </td>
+            <td class="td">31.12.2021</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> <!-- card -->
+</div> <!-- main__base -->

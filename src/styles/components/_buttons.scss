@@ -1,0 +1,39 @@
+.button {
+  display: flex;
+  align-items: center;
+  @include font-ubuntu;
+  $base-size: 16px;
+  padding: $base-size calc($base-size * 1.5);
+  border-radius: 7px;
+
+  font-size: $base-size;
+
+  &__icon {
+    display: inline-block;
+    // width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+
+  &__svg--stroke {
+    stroke: $color-white;
+  }
+
+  &__svg--fill {
+    fill: $color-white;
+  }
+}
+
+.button.flex {
+  column-gap: 0;
+}
+
+.button--primary {
+  background-color: $color-primary;
+  color: $color-white;
+}
+
+.button--secondary {
+  background-color: $color-white;
+  color: $color-primary;
+}
