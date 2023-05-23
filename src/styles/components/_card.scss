@@ -70,11 +70,18 @@
   }
 }
 
+@media (max-width: 991px) {
+  .card--account {
+    width: 50%;
+  }
+}
+
 .card--account {
   width: 30%;
   padding: 22px;
   border-radius: 9px;
 }
+
 
 .card--table {
   width: 100%;

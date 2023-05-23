@@ -4,11 +4,12 @@ import {
   createSelect,
   createButtonAddNewAccount,
 } from '../elements/buttons.js';
+import { formatDateMonthWord } from '../helpers/format-date.js';
 
-export function createPageAccountsList() {
+export function createPageAccountsList(arrAccounts) {
   const container = el('div.container');
   const mainTop = createMainTop();
-  const mainBase = createMainBase();
+  const mainBase = createMainBase(arrAccounts);
   setChildren(container, [mainTop, mainBase]);
   return container;
 }
@@ -31,31 +32,40 @@ function createMainTop() {
   return mainTop;
 }
 
-function createMainBase() {
+function createMainBase(arrAccounts) {
   const mainBase = el('div.main__base');
-  const card = createCardAccount();
-  mainBase.append(card);
+  arrAccounts.forEach((account) => {
+    const card = createCardAccount(account);
+    mainBase.append(card);
+  });
   return mainBase;
 }
 
-function createCardAccount() {
+function createCardAccount({ account, balance, transactions }) {
+  const date = getLastTransaction(transactions);
+
   const card = el(
     'div.card card--account',
     el(
       'div.card__body',
-      el('span.card__acc-number', '123456788932021'),
-      el('span.card__acc-amount', '3 523 '),
+      el('span.card__acc-number', account),
+      el('span.card__acc-amount', balance),
       el(
         'div.card__acc-action',
         el(
           'div.card__acc-wrap',
           el('span.card__acc-action-title', 'Последняя транзакция:'),
-          el('span.card__acc-action-date', '21 августа 2021')
+          el('span.card__acc-action-date', date)
         ),
-        el('a.link btn button button--primary', 'Открыть', { href: '#' })
+        el('a.link btn button button--primary', 'Открыть', {
+          href: `/accounts/${account}`,
+        })
       )
     )
   );
-
   return card;
+}
+
+function getLastTransaction(trans) {
+  return trans.length ? formatDateMonthWord(trans[0].date) : 'Транзакций нет';
 }

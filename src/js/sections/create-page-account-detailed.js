@@ -12,18 +12,18 @@ import { createGraph } from '../elements/graph.js';
 import { createCardTemplate } from '../elements/card-template.js';
 import { createTable } from '../elements/table.js';
 
-export function createPageAccountDetailed() {
+export function createPageAccountDetailed({ account, balance, transactions }) {
   const container = el('div.container');
-  const top = createMainTop();
-  const base = createMainBase();
+  const top = createMainTop(account, balance);
+  const base = createMainBase(account, transactions);
   setChildren(container, [top, base]);
   return container;
 }
 
-function createMainTop() {
+function createMainTop(account, balance) {
   const mainTop = el('div.main__top');
   const { titleBlock, insertButtonPlace } = createTitleBlock('Просмотр счёта');
-  const accountInfo = createAccountInfo('12455242373623463', '1 235');
+  const accountInfo = createAccountInfo(account, balance);
   const button = createButtonGoBack();
   insertButtonPlace.append(button);
 
@@ -32,11 +32,11 @@ function createMainTop() {
   return mainTop;
 }
 
-function createMainBase() {
+function createMainBase(account, transactions) {
   const base = el('div.main__base');
   const form = createForm();
-  const graph = createGraph();
-  const table = createTable();
+  const graph = createGraph(account, transactions);
+  const table = createTable(account, transactions);
   const cardG = createCardTemplate('card--graph', 'Динамика баланса', graph);
   const cardT = createCardTemplate('card--table', 'История переводов', table);
 

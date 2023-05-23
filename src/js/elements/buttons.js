@@ -20,12 +20,20 @@ function createSelect(optionsArr) {
 
 function createButtonAddNewAccount() {
   const button = createButton(iconPlus, 'Создать новый счёт');
+  button.addEventListener('click', () => {
+    button.dispatchEvent(
+      new CustomEvent('create-new-account', {
+        bubbles: true,
+      })
+    );
+  });
   return button;
 }
 
 function createButtonGoBack() {
-  const button = createButton(iconArrow, 'Вернуться назад');
-  return button;
+  const link = createButtonLink(iconArrow, 'Вернуться назад');
+  link.href = '/accounts';
+  return link;
 }
 
 function createButtonSend() {
@@ -39,4 +47,12 @@ function createButton(icon, text) {
   const button = el('button.btn.button.button--primary', span);
   button.append(text);
   return button;
+}
+
+function createButtonLink(icon, text) {
+  const span = el('span.button__icon');
+  span.innerHTML = icon;
+  const link = el('a.link.btn.button.button--primary', span);
+  link.append(text);
+  return link;
 }

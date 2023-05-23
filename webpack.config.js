@@ -20,7 +20,8 @@ module.exports = (env) => ({
   },
   devServer: {
     historyApiFallback: true,
-    hot: true,
+    // hot: true,
+    hot: false,
   },
   // devtool: 'inline-cheap-module-source-map',
   module: {

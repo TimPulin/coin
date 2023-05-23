@@ -1,9 +1,10 @@
 import { el, setChildren } from 'redom';
+import { getGraphArr } from '../helpers/filter-for-graph.js';
 
 export { createGraph, createGraphRatio };
 
-function createGraph() {
-  const list = createGraphList();
+function createGraph(account, transactions) {
+  const list = createGraphList(account, transactions);
   const limitBox = createGraphLimitBox();
   const body = createGraphBody(list, limitBox);
   return body;
@@ -22,18 +23,12 @@ function createGraphBody(list, limitBox) {
   return body;
 }
 
-function createGraphList() {
-  const arr = [
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-  ];
+function createGraphList(account, transactions) {
+  const graphArr = getGraphArr(account, transactions);
+
   const list = el('div.graph__list');
-  arr.forEach((elem) => {
-    const { item, itemColor } = createGraphItem(elem.name);
+  graphArr.forEach((elem) => {
+    const { item, itemColor } = createGraphItem(elem.month);
     itemColor.classList.add('graph__item-color--1');
     list.append(item);
   });

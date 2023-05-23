@@ -1,8 +1,9 @@
 import { el } from 'redom';
+import { formatDateMonthDigit } from '../helpers/format-date.js';
 
-export function createTable() {
+export function createTable(account, transactions) {
   const thead = createThead();
-  const tbody = createTbody();
+  const tbody = createTbody(account, transactions);
   const table = el('table.table', thead, tbody);
   return table;
 }
@@ -21,28 +22,30 @@ function createThead() {
   return thead;
 }
 
-function createTbody() {
-  const arr = [
-    { accS: '1234', accR: '1234', amount: '1234', data: '12.11.2022' },
-    { accS: '1234', accR: '1234', amount: '1234', data: '12.11.2022' },
-    { accS: '1234', accR: '1234', amount: '1234', data: '12.11.2022' },
-  ];
+function createTbody(account, transactions) {
   const tbody = el('tbody.tbody');
-  arr.forEach((item) => {
-    const row = createTrow(item);
+  transactions.forEach((item) => {
+    const row = createTrow(account, item);
     tbody.append(row);
   });
 
   return tbody;
 }
 
-function createTrow(item) {
+function createTrow(account, item) {
+  const debitClass = getDebitClass(account, item.to);
   const row = el(
     'tr.tr',
-    el('td.td', item.accS),
-    el('td.td', item.accR),
-    el('td.td', item.amount),
-    el('td.td', item.data)
+    el('td.td', item.from),
+    el('td.td', item.to),
+    el(`td.td.td__amount.${debitClass}`, item.amount),
+    el('td.td', formatDateMonthDigit(item.date))
   );
   return row;
+}
+
+function getDebitClass(account, recipient) {
+  return account === recipient
+    ? 'td__amount--positive'
+    : 'td__amount--negative';
 }
