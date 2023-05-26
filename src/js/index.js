@@ -14,9 +14,12 @@ import {
   authorization,
   getAccounts,
   createNewAccount,
+  makeTransaction,
+  getAccountData,
 } from './connection/client-server.js';
 
 document.addEventListener('submit-login', handleLogin);
+document.addEventListener('submit-make-transaction', handleMakeTransaction);
 document.addEventListener('create-new-account', handleCreateNewAccount);
 
 async function handleLogin(event) {
@@ -39,10 +42,23 @@ async function handleCreateNewAccount() {
   }
 }
 
-// selectInit();
-// function selectInit(elem) {
-//   const select = new Choices(elem, {
-//     allowHTML: true,
-//   });
-// return select;
-// }
+async function handleMakeTransaction(event) {
+  const token = getTokenFromSessionStorage();
+
+  if (isTransactionPossible(event)) {
+    const response = await makeTransaction(token, event.detail.data);
+    if (response.payload) {
+      console.log('успешно проведена');
+      renderPageAccountDetailed(token, event.detail.data.from); //сделать оповещение "перевод успешно произведен"
+    } else {
+      console.log(response.error);
+    }
+  } else {
+    console.log('недостаточно средств на счете');
+    //сделать оповещение "недостаточно средств на счете"
+  }
+}
+
+function isTransactionPossible(event) {
+  return event.detail.data.amount <= event.detail.data.balance;
+}

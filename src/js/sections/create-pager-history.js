@@ -8,18 +8,22 @@ import { createGraph, createGraphRatio } from '../elements/graph.js';
 import { createCardTemplate } from '../elements/card-template.js';
 import { createTable } from '../elements/table.js';
 
-export function createPageHistoryBalance() {
+export function createPageHistoryBalance({
+  account,
+  balance: balanceCurrent,
+  transactions,
+}) {
   const container = el('div.container');
-  const top = createMainTop();
-  const base = createMainBase();
+  const top = createMainTop(account, balanceCurrent);
+  const base = createMainBase(account, transactions, balanceCurrent);
   setChildren(container, [top, base]);
   return container;
 }
 
-function createMainTop() {
+function createMainTop(account, balanceCurrent) {
   const mainTop = el('div.main__top');
   const { titleBlock, insertButtonPlace } = createTitleBlock('История баланса');
-  const accountInfo = createAccountInfo('12455242373623463', '1 235');
+  const accountInfo = createAccountInfo(account, balanceCurrent);
   const button = createButtonGoBack();
   insertButtonPlace.append(button);
 
@@ -28,11 +32,22 @@ function createMainTop() {
   return mainTop;
 }
 
-function createMainBase() {
+function createMainBase(account, transactions, balanceCurrent) {
+  const reportingPeriod = 12;
   const base = el('div.main__base');
-  const graphDynamic = createGraph();
-  const graphRation = createGraphRatio();
-  const table = createTable();
+  const graphDynamic = createGraph(
+    account,
+    transactions,
+    balanceCurrent,
+    reportingPeriod
+  );
+  const graphRation = createGraphRatio(
+    account,
+    transactions,
+    balanceCurrent,
+    reportingPeriod
+  );
+  const table = createTable(account, transactions);
   const cardDynamic = createCardTemplate(
     'card--graph',
     'Динамика баланса',

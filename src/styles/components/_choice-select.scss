@@ -1,0 +1,26 @@
+.choices {
+  box-sizing: border-box;
+  @include input-style;
+  padding-right: 50px;
+
+  &__inner {
+    border: none;
+    border-radius: 7px;
+    background-color: $color-white;
+  }
+
+  .is-selected {
+    position: relative;
+  }
+
+  .is-selected::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    background: no-repeat url('/src/assets/icons/icon-checked-select-item.svg') center right / 24px;
+  }
+
+}

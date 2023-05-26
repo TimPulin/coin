@@ -18,11 +18,13 @@ function createMainTop() {
   const mainTop = el('div.main__top');
   const { titleBlock, insertSelectPlace, insertButtonPlace } =
     createTitleBlock('Ваши счета');
-  const select = createSelect([
+  const arr = [
     { name: 'по номеру', val: 'number' },
     { name: 'По балансу', val: 'balance' },
     { name: 'По последней транзакции', val: 'lastaction' },
-  ]);
+  ];
+
+  const select = createSelect(arr, 'filter-accounts');
   const button = createButtonAddNewAccount();
   insertSelectPlace.append(select);
   insertButtonPlace.append(button);

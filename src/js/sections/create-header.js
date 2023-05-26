@@ -29,10 +29,10 @@ function createNav() {
 
 function createNavList() {
   const navList = el('ul.navigation__list');
-  const cashMashine = createNavItem('Банкоматы', 'atm');
-  const accounts = createNavItem('Счета', 'accounts');
-  const currency = createNavItem('Валюта', 'currency');
-  const exit = createNavItem('Выйти', 'login');
+  const cashMashine = createNavItem('Банкоматы', '/atm');
+  const accounts = createNavItem('Счета', '/accounts');
+  const currency = createNavItem('Валюта', '/currency');
+  const exit = createNavItem('Выйти', '/');
 
   setChildren(navList, [cashMashine, accounts, currency, exit]);
 

@@ -20,8 +20,11 @@ function createAccountInfo(accNumber, accAmount) {
   const balanceBlock = el('div.main__balance');
   const balanceTitle = el('span.main__balance-title', 'Баланс');
   const balanceAmount = el('span.main__balance-amount', accAmount);
-
-  setChildren(balanceBlock, [balanceTitle, balanceAmount]);
+  const balanceHistory = el('a.link--balance-history', {
+    href: `/accounts/${accNumber}/balance-history`,
+  });
+  setChildren(balanceHistory, [balanceTitle, balanceAmount]);
+  setChildren(balanceBlock, [balanceHistory]);
   setChildren(accountInfo, [accountNumber, balanceBlock]);
 
   return accountInfo;

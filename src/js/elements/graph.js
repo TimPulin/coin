@@ -1,54 +1,84 @@
 import { el, setChildren } from 'redom';
 import { getGraphArr } from '../helpers/filter-for-graph.js';
+import {
+  getMax,
+  getBalance,
+  getMaxInOutTransactions,
+} from '../helpers/get-max.js';
 
 export { createGraph, createGraphRatio };
 
-function createGraph(account, transactions) {
-  const list = createGraphList(account, transactions);
-  const limitBox = createGraphLimitBox();
+function createGraph(account, transactions, balanceCurrent, reportingPeriod) {
+  const graphArr = getGraphArr(
+    account,
+    transactions,
+    balanceCurrent,
+    reportingPeriod
+  );
+  const limitBoxMax = getMax(graphArr, getBalance);
+
+  const list = createGraphList(graphArr);
+  const limitBox = createGraphLimitBox(limitBoxMax);
   const body = createGraphBody(list, limitBox);
   return body;
 }
 
-function createGraphRatio() {
-  const list = createGraphListRatio();
-  const limitBox = createGraphLimitBox();
-  const body = createGraphBody(list, limitBox);
+function createGraphRatio(
+  account,
+  transactions,
+  balanceCurrent,
+  reportingPeriod
+) {
+  const graphArr = getGraphArr(
+    account,
+    transactions,
+    balanceCurrent,
+    reportingPeriod
+  );
+  const { larger, smaller, smallerPercent } = getMaxInOutTransactions(graphArr);
+  const list = createGraphListRatio(graphArr);
+  const limitItem = createLimitItem(smaller, smallerPercent);
+  const limitBox = createGraphLimitBox(larger);
+  limitBox.append(limitItem);
+
+  const body = createGraphBody(list, limitBox, 'graph--ratio');
   return body;
 }
 
-function createGraphBody(list, limitBox) {
-  const body = el('div.graph', el('div.graph__body', list, limitBox));
+function createGraphBody(list, limitBox, aditionalClass = '') {
+  const body = el(
+    `div.graph.${aditionalClass}`,
+    el('div.graph__body', list, limitBox)
+  );
 
   return body;
 }
 
-function createGraphList(account, transactions) {
-  const graphArr = getGraphArr(account, transactions);
-
+function createGraphList(graphArr) {
   const list = el('div.graph__list');
   graphArr.forEach((elem) => {
-    const { item, itemColor } = createGraphItem(elem.month);
-    itemColor.classList.add('graph__item-color--1');
+    const item = createGraphItem(elem.month);
+    const itemColor = createItemColor(elem.balancePercent, 1);
+    item.append(itemColor);
     list.append(item);
   });
 
   return list;
 }
 
-function createGraphListRatio() {
-  const arr = [
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-    { name: 'янв' },
-  ];
+function createGraphListRatio(graphArr) {
   const list = el('div.graph__list');
-  arr.forEach((elem) => {
-    const { item, itemColor } = createGraphItem(elem.name);
-    itemColor.classList.add('graph__item-color--1');
+  graphArr.forEach((elem) => {
+    const item = createGraphItem(elem.month);
+    const itemColor1 = createItemColor(elem.incomingPercent, 1);
+    const itemColor2 = createItemColor(elem.outcomingPercent, 2);
+    addClassSmaler(
+      itemColor1,
+      itemColor2,
+      elem.incomingPercent,
+      elem.outcomingPercent
+    );
+    setChildren(item, [itemColor1, itemColor2]);
     list.append(item);
   });
 
@@ -56,19 +86,38 @@ function createGraphListRatio() {
 }
 
 function createGraphItem(name) {
-  const itemColor = el('div.graph__item-color');
-  const item = el(
-    'div.graph__item',
-    itemColor,
-    el('div.graph__item-name', name)
-  );
-  return { item, itemColor };
+  const item = el('div.graph__item', el('div.graph__item-name', name));
+  return item;
 }
 
-function createGraphLimitBox() {
+function createItemColor(colorHeight, index) {
+  const itemColor = el(`div.graph__item-color.graph__item-color--${index}`, {
+    style: `height:${colorHeight}%;`,
+  });
+  return itemColor;
+}
+
+function addClassSmaler(itemColor1, itemColor2, percent1, percent2) {
+  percent1 > percent2
+    ? itemColor2.classList.add('graph__item-color--smaler')
+    : itemColor1.classList.add('graph__item-color--smaler');
+}
+
+function createGraphLimitBox(limitBoxMax) {
   const box = el('div.graph__limit-box');
-  const min = el('span.graph__limit-min', '0');
-  const max = el('span.graph__limit-max', '300');
-  setChildren(box, [max, min]);
+  const min = el('span.graph__limit-item.graph__limit-item--min', '0');
+  const max = el('span.graph__limit-max', `${limitBoxMax}`, {
+    style: 'height:100%;',
+  });
+
+  setChildren(box, [min, max]);
   return box;
+}
+
+function createLimitItem(text, itemHeight) {
+  const item = el('span.graph__limit-item', `${text}`, {
+    style: `height:calc(${itemHeight}% + 10px);`,
+  });
+
+  return item;
 }

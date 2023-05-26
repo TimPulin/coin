@@ -24,6 +24,12 @@ function createThead() {
 
 function createTbody(account, transactions) {
   const tbody = el('tbody.tbody');
+
+  if (!transactions.length) {
+    const row = createEmptyTrow();
+    tbody.append(row);
+  }
+
   transactions.forEach((item) => {
     const row = createTrow(account, item);
     tbody.append(row);
@@ -48,4 +54,12 @@ function getDebitClass(account, recipient) {
   return account === recipient
     ? 'td__amount--positive'
     : 'td__amount--negative';
+}
+
+function createEmptyTrow() {
+  const row = el(
+    'tr.tr.tr--message',
+    el('td.td', 'Транзакций нет', { colspan: 4 })
+  );
+  return row;
 }

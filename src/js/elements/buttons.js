@@ -1,5 +1,4 @@
 import { el } from 'redom';
-import Choices from 'choices.js';
 import { iconPlus, iconArrow, iconMail } from '../elements/icons.js';
 export {
   createSelect,
@@ -8,8 +7,8 @@ export {
   createButtonSend,
 };
 
-function createSelect(optionsArr) {
-  const select = el('select.form-select');
+function createSelect(optionsArr, selectName) {
+  const select = el('select.js-choice', { name: selectName });
   optionsArr.forEach((option) => {
     const optionEl = el('option', option.name, { value: option.val });
     select.append(optionEl);

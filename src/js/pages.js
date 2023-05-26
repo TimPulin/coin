@@ -4,13 +4,20 @@ import { createPageEntrance } from './sections/create-page-entrance.js';
 import { createPageAccountsList } from './sections/create-page-accounts-list.js';
 import { createPageAccountDetailed } from './sections/create-page-account-detailed.js';
 import { createPageHistoryBalance } from './sections/create-pager-history.js';
-import { getAccountData, getAccounts } from './connection/client-server.js';
+import { createPageCurrency } from './sections/create-page-currency.js';
+import {
+  getAccountData,
+  getAccounts,
+  getUserCurrencies,
+} from './connection/client-server.js';
+import { selectChoiceInit } from './helpers/select-choice-init.js';
 
 export {
   renderPageEntrence,
   renderPageAccountsList,
   renderPageAccountDetailed,
   renderPageHistoriBalance,
+  renderPageCurrency,
 };
 
 const body = document.querySelector('body');
@@ -32,6 +39,7 @@ async function renderPageAccountsList(token) {
     const arrAccounts = response.payload;
     const page = createPageAccountsList(arrAccounts);
     renderPage(page);
+    selectChoiceInit();
   } else {
     console.log(response.error);
   }
@@ -43,14 +51,33 @@ async function renderPageAccountDetailed(token, id) {
     const dataAccount = response.payload;
     const page = createPageAccountDetailed(dataAccount);
     renderPage(page);
+
+    selectChoiceInit();
   } else {
     console.log(response.error);
   }
 }
 
-function renderPageHistoriBalance() {
-  const page = createPageHistoryBalance();
-  renderPage(page);
+async function renderPageHistoriBalance(token, id) {
+  const response = await getAccountData(token, id);
+  if (response.payload) {
+    const dataAccount = response.payload;
+    const page = createPageHistoryBalance(dataAccount);
+    renderPage(page);
+  } else {
+    console.log(response.error);
+  }
+}
+
+async function renderPageCurrency(token) {
+  const response = await getUserCurrencies(token);
+  if (response.payload) {
+    const dataUserCurrencies = response.payload;
+    const page = createPageCurrency(dataUserCurrencies);
+    renderPage(page);
+  } else {
+    console.log(response.error);
+  }
 }
 
 function renderPage(page) {

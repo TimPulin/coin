@@ -18,6 +18,14 @@
     display: table-row;
   }
 
+  .tr--message {
+
+    .td {
+      color: $color-secondary_4;
+      text-align: center;
+    }
+  }
+
   .th,
   .td {
     display: table-cell;
@@ -46,8 +54,8 @@
     font-weight: 400;
     font-size: 16px;
 
-    &__amount::after {
-      content: ' \20BD';
+    &__amount {
+      @include ruble-sign;
       font-size: 14px;
     }
 

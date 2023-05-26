@@ -40,9 +40,11 @@
 
 
   &__limit-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+
+    position: relative;
 
     font-family: 'WorkSans';
     font-weight: 500;
@@ -51,38 +53,20 @@
     letter-spacing: -0.02em;
   }
 
-  &__limit::after {
-    content: ' \20BD';
+  &__limit-item {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
   }
 
-  &__item:nth-child(1) .graph__item-color--1 {
-    height: 100%;
+  &__limit-item--min {
+    bottom: 0;
   }
 
-  &__item:nth-child(2) .graph__item-color--1 {
-    height: 50%;
+  &__ruble-sign {
+    @include ruble-sign;
   }
-
-  &__item:nth-child(3) .graph__item-color--1 {
-    height: 25%;
-  }
-
-  &__item:nth-child(4) .graph__item-color--1 {
-    height: 21%;
-  }
-
-  &__item:nth-child(5) .graph__item-color--1 {
-    height: 90%;
-  }
-
-  &__item:nth-child(6) .graph__item-color--1 {
-    height: 40%;
-  }
-
-  &__item:nth-child(6) .graph__item-color--2 {
-    height: 13%;
-  }
-
 }
 
 .graph--ratio {
