@@ -6,6 +6,7 @@ import {
   renderPageAccountDetailed,
   renderPageHistoriBalance,
 } from './pages.js';
+import { createExchangeRateList } from './sections/create-card-exchange-rate.js';
 import {
   setTokenToSessionStorage,
   getTokenFromSessionStorage,
@@ -21,6 +22,7 @@ import {
 document.addEventListener('submit-login', handleLogin);
 document.addEventListener('submit-make-transaction', handleMakeTransaction);
 document.addEventListener('create-new-account', handleCreateNewAccount);
+document.addEventListener('change-rate-message', handleChangeRateMessage);
 
 async function handleLogin(event) {
   const response = await authorization(event.detail.data);
@@ -61,4 +63,8 @@ async function handleMakeTransaction(event) {
 
 function isTransactionPossible(event) {
   return event.detail.data.amount <= event.detail.data.balance;
+}
+
+function handleChangeRateMessage(event) {
+  createExchangeRateList(event.detail.data);
 }

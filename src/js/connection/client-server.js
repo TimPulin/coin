@@ -84,9 +84,17 @@ async function getUserCurrencies(token) {
   return parsed;
 }
 
-const socket = new WebSocket('wss://localhost:3000', {
-  method: 'websocket',
-  headers: {
-    Authorization: `Basic ZGV2ZWxvcGVyOnNraWxsYm94`,
-  },
-});
+const socket = new WebSocket('ws://localhost:3000/currency-feed');
+
+socket.onmessage = async function (event) {
+  const data = event.data;
+  const message = JSON.parse(data);
+  if (message.type === 'EXCHANGE_RATE_CHANGE') {
+    document.dispatchEvent(
+      new CustomEvent('change-rate-message', {
+        bubbles: true,
+        detail: { data: message },
+      })
+    );
+  }
+};
