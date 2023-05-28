@@ -4,6 +4,7 @@ import {
   renderPageEntrence,
   renderPageAccountsList,
   renderPageAccountDetailed,
+  renderPageCurrency,
   renderPageHistoriBalance,
 } from './pages.js';
 import { createExchangeRateList } from './sections/create-card-exchange-rate.js';
@@ -15,6 +16,7 @@ import {
   authorization,
   getAccounts,
   createNewAccount,
+  makeCurrencyBuy,
   makeTransaction,
   getAccountData,
 } from './connection/client-server.js';
@@ -23,6 +25,7 @@ document.addEventListener('submit-login', handleLogin);
 document.addEventListener('submit-make-transaction', handleMakeTransaction);
 document.addEventListener('create-new-account', handleCreateNewAccount);
 document.addEventListener('change-rate-message', handleChangeRateMessage);
+document.addEventListener('submit-currencies-buy', handleCurrenciesBuy);
 
 async function handleLogin(event) {
   const response = await authorization(event.detail.data);
@@ -57,7 +60,7 @@ async function handleMakeTransaction(event) {
     }
   } else {
     console.log('недостаточно средств на счете');
-    //сделать оповещение "недостаточно средств на счете"
+    // TODO: сделать оповещение "недостаточно средств на счете"
   }
 }
 
@@ -67,4 +70,15 @@ function isTransactionPossible(event) {
 
 function handleChangeRateMessage(event) {
   createExchangeRateList(event.detail.data);
+}
+
+async function handleCurrenciesBuy(event) {
+  const token = getTokenFromSessionStorage();
+  const response = await makeCurrencyBuy(token, event.detail.data);
+  if (response.payload) {
+    renderPageCurrency(token);
+  } else {
+    console.log(response.error);
+    // TODO: сделать оповещение "недостаточно средств на счете"
+  }
 }

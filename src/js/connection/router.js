@@ -5,6 +5,7 @@ import {
   renderPageEntrence,
   renderPageHistoriBalance,
   renderPageCurrency,
+  renderPageAtm,
 } from '../pages.js';
 import { getTokenFromSessionStorage } from './session-storage.js';
 export const router = new Navigo('/');
@@ -35,6 +36,11 @@ router.on('/accounts/:id/balance-history', ({ data: { id } }) => {
 router.on('/currency', () => {
   const token = getTokenFromSessionStorage();
   renderPageCurrency(token);
+});
+
+router.on('/atm', () => {
+  const token = getTokenFromSessionStorage();
+  renderPageAtm(token);
 });
 
 router.resolve();

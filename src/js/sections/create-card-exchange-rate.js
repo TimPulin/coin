@@ -7,7 +7,7 @@ const currenciesExchangeRateList = el('ul.card__list');
 
 function createCardExchangeRate() {
   const cardCurrenciesExchangeRate = createCardTemplate(
-    'card--shade',
+    'card--shade.card--exchange-rate',
     'Изменение курсов в реальном времени',
     currenciesExchangeRateList
   );
@@ -24,7 +24,7 @@ function createExchangeRateList(dataExchange) {
     item.li.append(sighRateChange);
     currenciesExchangeRateList.prepend(item.li);
 
-    if (currenciesExchangeRateList.children.length > 12) {
+    if (currenciesExchangeRateList.children.length > 25) {
       currenciesExchangeRateList.lastChild.remove();
     }
   }
