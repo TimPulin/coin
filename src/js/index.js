@@ -1,11 +1,10 @@
 import { router } from './connection/router.js';
+import './state.js';
 import '../styles/main.scss';
 import {
-  renderPageEntrence,
   renderPageAccountsList,
   renderPageAccountDetailed,
   renderPageCurrency,
-  renderPageHistoriBalance,
 } from './pages.js';
 import { createExchangeRateList } from './sections/create-card-exchange-rate.js';
 import {
@@ -14,11 +13,9 @@ import {
 } from './connection/session-storage.js';
 import {
   authorization,
-  getAccounts,
   createNewAccount,
   makeCurrencyBuy,
   makeTransaction,
-  getAccountData,
 } from './connection/client-server.js';
 
 document.addEventListener('submit-login', handleLogin);
@@ -26,6 +23,7 @@ document.addEventListener('submit-make-transaction', handleMakeTransaction);
 document.addEventListener('create-new-account', handleCreateNewAccount);
 document.addEventListener('change-rate-message', handleChangeRateMessage);
 document.addEventListener('submit-currencies-buy', handleCurrenciesBuy);
+document.addEventListener('sort-accounts', handleSortAccounts);
 
 async function handleLogin(event) {
   const response = await authorization(event.detail.data);
@@ -81,4 +79,9 @@ async function handleCurrenciesBuy(event) {
     console.log(response.error);
     // TODO: сделать оповещение "недостаточно средств на счете"
   }
+}
+
+function handleSortAccounts(event) {
+  const token = getTokenFromSessionStorage();
+  renderPageAccountsList(token, event.detail.data);
 }

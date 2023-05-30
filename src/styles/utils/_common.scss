@@ -2,6 +2,7 @@
   @include reset-number-appearance;
   min-height: 100vh;
   background-color: $color-white;
+  font-family: 'WorkSans';
   font-style: normal;
 }
 
@@ -58,20 +59,24 @@
 }
 
 .bg-arrow {
+  display: inline-block;
   width: 20px;
   height: 10px;
   background: no-repeat center center / contain;
 }
 
 .bg-arrow--green {
-  background-image: url('/src/assets/images/arrow-green.jpg');
+  background-image: url('/src/assets/images/arrow-green.png');
 }
 
 .bg-arrow--red {
-  background-image: url('/src/assets/images/arrow-red.jpg');
+  background-image: url('/src/assets/images/arrow-red.png');
 }
+
+
 
 .link--balance-history {
   @include link-reset;
   color: $color-black;
+  transition: color .3s ease;
 }

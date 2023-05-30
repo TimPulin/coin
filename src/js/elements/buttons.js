@@ -7,10 +7,13 @@ export {
   createButtonSend,
 };
 
-function createSelect(optionsArr, selectName) {
+function createSelect(optionsArr, selectName, selectedKey = '') {
   const select = el('select.js-choice', { name: selectName });
   optionsArr.forEach((option) => {
-    const optionEl = el('option', option.name, { value: option.val });
+    const optionEl = el('option', option.name, {
+      value: option.val,
+      selected: isSelected(option.val, selectedKey),
+    });
     select.append(optionEl);
   });
 
@@ -54,4 +57,8 @@ function createButtonLink(icon, text) {
   const link = el('a.link.btn.button.button--primary', span);
   link.append(text);
   return link;
+}
+
+function isSelected(optionVal, selectedKey) {
+  return optionVal === selectedKey;
 }

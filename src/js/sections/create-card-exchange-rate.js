@@ -21,7 +21,8 @@ function createExchangeRateList(dataExchange) {
     const item = createCurrenciesListItem(title, dataExchange.rate);
     const sighRateChange = createSignRateChange(dataExchange.change);
 
-    item.li.append(sighRateChange);
+    // item.li.append(sighRateChange);
+    item.itemValue.append(sighRateChange);
     currenciesExchangeRateList.prepend(item.li);
 
     if (currenciesExchangeRateList.children.length > 25) {

@@ -5,8 +5,8 @@
   $base-size: 16px;
   padding: $base-size calc($base-size * 1.5);
   border-radius: 7px;
-
   font-size: $base-size;
+  text-decoration: none;
 
   &__icon {
     display: inline-block;
@@ -36,4 +36,31 @@
 .button--secondary {
   background-color: $color-white;
   color: $color-primary;
+}
+
+.container-app {
+
+  .button--primary:focus-visible,
+  .button--primary:hover {
+    background-color: $color-primary-light_1;
+    color: $color-white;
+  }
+
+  .button--primary:active {
+    background-color: $color-primary-shade;
+    border: none;
+    color: $color-white;
+  }
+
+  .button--secondary:focus-visible,
+  .button--secondary:hover {
+    background-color: $color-primary-light_2;
+    color: $color-white;
+  }
+
+  .button--secondary:active {
+    background-color: $color-primary-light_3;
+    outline: none;
+    color: $color-white;
+  }
 }

@@ -49,12 +49,12 @@ function createMainBase(account, transactions, balanceCurrent) {
   );
   const table = createTable(account, transactions);
   const cardDynamic = createCardTemplate(
-    'card--graph',
+    'card--graph.card--grow-up',
     'Динамика баланса',
     graphDynamic
   );
   const cardRatio = createCardTemplate(
-    'card--graph',
+    'card--graph.card--grow-up',
     'Соотношение входящих исходящих транзакций',
     graphRation
   );

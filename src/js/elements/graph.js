@@ -116,7 +116,8 @@ function createGraphLimitBox(limitBoxMax) {
 
 function createLimitItem(text, itemHeight) {
   const item = el('span.graph__limit-item', `${text}`, {
-    style: `height:calc(${itemHeight}% + 10px);`,
+    // style: `height:calc(${itemHeight}% + 10px);`,
+    style: `bottom:calc(${itemHeight}% + 10px);`,
   });
 
   return item;

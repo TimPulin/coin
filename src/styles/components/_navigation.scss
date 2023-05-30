@@ -26,22 +26,6 @@
     font-size: 16px;
     line-height: 20px;
     outline: none;
-
-
-    &:focus-visible {
-      // background-color: $color-pink_violet;
-      // color: $color-primary_shade;
-    }
-
-    &:hover {
-      color: $color-primary;
-      background-color: inherit;
-    }
-
-    &:active {
-      // color: $color-primary_shade;
-      background-color: inherit;
-    }
   }
 
   &__title {

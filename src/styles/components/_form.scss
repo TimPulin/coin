@@ -60,6 +60,22 @@
     @include input-style;
     width: 300px;
     padding: 10px 16px 10px 16px;
+
+    &:focus-visible {
+      background-color: $color-primary-lingt_4;
+      border-color: $color-primary;
+      box-shadow: none;
+    }
+
+    &:hover {
+      background-color: $color-primary-lingt_5;
+      border-color: $color-primary;
+    }
+
+    &:active {
+      background-color: $color-primary-lingt_4;
+      border-color: $color-primary;
+    }
   }
 
   .button {
@@ -92,6 +108,13 @@
 
   .button {
     margin-left: 206px;
+  }
+}
+
+.form--clear {
+  .form__wrap {
+    padding: 0;
+    border-radius: 0;
   }
 }
 

@@ -87,6 +87,11 @@
   background-color: $color-grey_7;
 }
 
+.card--light {
+  background-color: $color-grey_7;
+  padding-bottom: 25px;
+}
+
 .card--shade {
   background-color: $color-grey_8;
 }
@@ -94,6 +99,10 @@
 .card--exchange-rate {
   height: 100%;
   overflow: hidden;
+}
+
+.card--grow-up {
+  flex-grow: 2;
 }
 
 .card-empty {

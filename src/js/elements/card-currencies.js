@@ -24,7 +24,8 @@ function createUserCurrenciesList(incomingObj) {
 
 function createCurrenciesListItem(title, value) {
   const itemTitle = el('span.relationship__title', title);
-  const itemValue = el('span.relationship__value', value);
+  // const itemValue = el('span.relationship__value', value);
+  const itemValue = el('span.relationship__value', el('span', value));
   const li = el(
     'li.relationship',
     el('.relationship__wrap-title', itemTitle),

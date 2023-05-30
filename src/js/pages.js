@@ -16,6 +16,7 @@ import {
   parallelRequests,
 } from './connection/client-server.js';
 import { selectChoiceInit } from './helpers/select-choice-init.js';
+import { state } from './state.js';
 
 export {
   renderPageEntrence,
@@ -39,13 +40,14 @@ function renderPageEntrence() {
   renderPage(page);
 }
 
-async function renderPageAccountsList(token) {
+async function renderPageAccountsList(token, sortAccountsBy = 'account') {
   const response = await getAccounts(token);
   if (response.payload) {
     const arrAccounts = response.payload;
-    const page = createPageAccountsList(arrAccounts);
+    const page = createPageAccountsList(arrAccounts, sortAccountsBy);
     renderPage(page);
     selectChoiceInit();
+    state.previousPage = 'GET';
   } else {
     console.log(response.error);
   }

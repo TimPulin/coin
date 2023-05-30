@@ -1,5 +1,6 @@
 import { el, setChildren, mount } from 'redom';
 import logoImgPath from '../../assets/images/logo.png';
+import { removeTokenFromSessionStorage } from '../connection/session-storage';
 
 export function createHeader() {
   const header = el('header.header');
@@ -33,6 +34,7 @@ function createNavList() {
   const accounts = createNavItem('Счета', '/accounts');
   const currency = createNavItem('Валюта', '/currency');
   const exit = createNavItem('Выйти', '/');
+  exit.addEventListener('click', removeTokenFromSessionStorage);
 
   setChildren(navList, [cashMashine, accounts, currency, exit]);
 
@@ -41,9 +43,13 @@ function createNavList() {
 
 function createNavItem(itemTitle, itemHref) {
   const item = el('li.navigation__item');
-  const link = el('a.navigation__link button.button--secondary', itemTitle, {
-    href: itemHref,
-  });
+  const link = el(
+    'a.navigation__link.btn.button.button--secondary',
+    itemTitle,
+    {
+      href: itemHref,
+    }
+  );
   item.append(link);
   return item;
 }
