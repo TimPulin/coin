@@ -1,6 +1,7 @@
 import { router } from './connection/router.js';
-import './state.js';
 import '../styles/main.scss';
+import { renderPopupMessage } from './elements/popup-message.js';
+import { addYMapLink } from './helpers/ymaps-init.js';
 import {
   renderPageAccountsList,
   renderPageAccountDetailed,
@@ -18,6 +19,8 @@ import {
   makeTransaction,
 } from './connection/client-server.js';
 
+addYMapLink();
+
 document.addEventListener('submit-login', handleLogin);
 document.addEventListener('submit-make-transaction', handleMakeTransaction);
 document.addEventListener('create-new-account', handleCreateNewAccount);
@@ -26,12 +29,18 @@ document.addEventListener('submit-currencies-buy', handleCurrenciesBuy);
 document.addEventListener('sort-accounts', handleSortAccounts);
 
 async function handleLogin(event) {
-  const response = await authorization(event.detail.data);
-  if (response.payload) {
-    setTokenToSessionStorage(response.payload.token);
-    router.navigate('/accounts');
-  } else {
-    console.log(response.error);
+  try {
+    const response = await authorization(event.detail.data);
+    const parsed = await response.json();
+    if (parsed.payload) {
+      setTokenToSessionStorage(parsed.payload.token);
+      router.navigate('/accounts');
+    } else {
+      event.detail.messageField.textContent = parsed.error;
+    }
+  } catch (error) {
+    console.log(error);
+    //TODO сообщение 'что-то пошло не так. попробуйте перезагрузить страницу'
   }
 }
 
@@ -51,19 +60,19 @@ async function handleMakeTransaction(event) {
   if (isTransactionPossible(event)) {
     const response = await makeTransaction(token, event.detail.data);
     if (response.payload) {
-      console.log('успешно проведена');
-      renderPageAccountDetailed(token, event.detail.data.from); //сделать оповещение "перевод успешно произведен"
+      renderPopupMessage('Транзакция успешно проведена');
+      renderPageAccountDetailed(token, event.detail.data.from);
     } else {
       console.log(response.error);
     }
   } else {
-    console.log('недостаточно средств на счете');
-    // TODO: сделать оповещение "недостаточно средств на счете"
+    renderPopupMessage('Недостаточно средств на счете');
   }
 }
 
 function isTransactionPossible(event) {
-  return event.detail.data.amount <= event.detail.data.balance;
+  console.log(event.detail.data.amount, event.detail.data.balance);
+  return Number(event.detail.data.amount) < Number(event.detail.data.balance);
 }
 
 function handleChangeRateMessage(event) {
@@ -77,7 +86,7 @@ async function handleCurrenciesBuy(event) {
     renderPageCurrency(token);
   } else {
     console.log(response.error);
-    // TODO: сделать оповещение "недостаточно средств на счете"
+    renderPopupMessage('Недостаточно средств на счете');
   }
 }
 

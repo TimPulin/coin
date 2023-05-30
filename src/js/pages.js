@@ -6,7 +6,7 @@ import { createPageAccountDetailed } from './sections/create-page-account-detail
 import { createPageHistoryBalance } from './sections/create-pager-history.js';
 import { createPageCurrency } from './sections/create-page-currency.js';
 import { createPageAtm } from './sections/create-page-atm.js';
-import { yandexMapInit } from './helpers/ymaps-init.js';
+import { yandexMapInit, addYMapLink } from './helpers/ymaps-init.js';
 import {
   getAccountData,
   getAccounts,
@@ -16,7 +16,6 @@ import {
   parallelRequests,
 } from './connection/client-server.js';
 import { selectChoiceInit } from './helpers/select-choice-init.js';
-import { state } from './state.js';
 
 export {
   renderPageEntrence,
@@ -41,15 +40,15 @@ function renderPageEntrence() {
 }
 
 async function renderPageAccountsList(token, sortAccountsBy = 'account') {
-  const response = await getAccounts(token);
-  if (response.payload) {
-    const arrAccounts = response.payload;
+  try {
+    const response = await getAccounts(token);
+    const parsed = await response.json();
+    const arrAccounts = parsed.payload;
     const page = createPageAccountsList(arrAccounts, sortAccountsBy);
     renderPage(page);
     selectChoiceInit();
-    state.previousPage = 'GET';
-  } else {
-    console.log(response.error);
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -57,6 +56,7 @@ async function renderPageAccountDetailed(token, id) {
   const response = await getAccountData(token, id);
   if (response.payload) {
     const dataAccount = response.payload;
+    dataAccount.transactions.reverse();
     const page = createPageAccountDetailed(dataAccount);
     renderPage(page);
 
@@ -70,6 +70,7 @@ async function renderPageHistoriBalance(token, id) {
   const response = await getAccountData(token, id);
   if (response.payload) {
     const dataAccount = response.payload;
+    dataAccount.transactions.reverse();
     const page = createPageHistoryBalance(dataAccount);
     renderPage(page);
   } else {
@@ -108,13 +109,3 @@ function renderPage(page) {
   main.innerHTML = '';
   main.append(page);
 }
-
-function addYMapLink() {
-  const YMapAPIKey = '6eb96e92-4b9a-4720-bccb-646f423c019c';
-  const script = el('script', {
-    src: `https://api-maps.yandex.ru/2.1/?apikey=${YMapAPIKey}&lang=ru_RU`,
-  });
-  document.head.prepend(script);
-}
-
-// https://api-maps.yandex.ru/2.1/?apikey=6eb96e92-4b9a-4720-bccb-646f423c019c&lang=ru_RU

@@ -25,7 +25,7 @@ function createExchangeRateList(dataExchange) {
     item.itemValue.append(sighRateChange);
     currenciesExchangeRateList.prepend(item.li);
 
-    if (currenciesExchangeRateList.children.length > 25) {
+    if (currenciesExchangeRateList.children.length > 21) {
       currenciesExchangeRateList.lastChild.remove();
     }
   }

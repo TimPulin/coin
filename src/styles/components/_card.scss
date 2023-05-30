@@ -67,7 +67,11 @@
 
   &__list {
     @include list-reset;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
   }
+
 }
 
 @media (max-width: 991px) {
@@ -98,7 +102,6 @@
 
 .card--exchange-rate {
   height: 100%;
-  overflow: hidden;
 }
 
 .card--grow-up {
@@ -108,4 +111,19 @@
 .card-empty {
   width: 30%;
   height: 0;
+}
+
+.card--popup-message {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: $color-grey_7;
+  border-radius: 7px;
+
+  .card__text {
+    font-family: 'Ubuntu';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+  }
 }

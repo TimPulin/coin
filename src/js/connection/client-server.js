@@ -23,8 +23,7 @@ async function authorization({ login, password }) {
       password,
     }),
   });
-  const parsed = await response.json();
-  return parsed;
+  return response;
 }
 
 async function getAccounts(token) {
@@ -33,8 +32,7 @@ async function getAccounts(token) {
       Authorization: `Basic ${token}`,
     },
   });
-  const parsed = await response.json();
-  return parsed;
+  return response;
 }
 
 async function createNewAccount(token) {

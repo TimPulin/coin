@@ -53,7 +53,6 @@ function createMainBase(account, transactions, balanceCurrent) {
   const cardG = createCardTemplate('card--graph', 'Динамика баланса', graph);
   const cardT = createCardTemplate('card--table', 'История переводов', table);
 
-  // setChildren(base, [form, cardG, cardT]);
   setChildren(base, [cardF, cardG, cardT]);
   return base;
 }
@@ -76,25 +75,6 @@ function createForm(account, balanceCurrent) {
     name: 'amount',
   });
   const button = createButtonSend();
-  // const form = el(
-  //   'form.form.form--transfer',
-  //   el(
-  //     'div.form__wrap',
-  //     el('h2.form__title', 'Новый перевод'),
-  //     el(
-  //       'label.form-label.form__label',
-  //       el('span.form__label-text', 'Номер счёта получателя'),
-  //       selectRecipient
-  //     ),
-  //     el(
-  //       'label.form-label.form__label',
-  //       el('span.form__label-text', 'Сумма перевода'),
-  //       inputAmount
-  //     ),
-  //     button
-  //   )
-  // );
-
   const form = el(
     'form.form.form--transfer.form--clear',
     el(
@@ -126,6 +106,7 @@ function handleSubmit(event, account, balanceCurrent) {
   formData.append('from', account);
   formData.append('balance', balanceCurrent);
   const formObj = Object.fromEntries(formData);
+  console.log(formObj);
 
   event.target.dispatchEvent(
     new CustomEvent('submit-make-transaction', {
